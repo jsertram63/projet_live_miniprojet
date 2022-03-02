@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_live_projet/widgets/Profile.dart';
+import 'package:flutter_live_projet/widgets/formulaire.dart';
 import 'package:flutter_live_projet/widgets/lineTextField.dart';
 import 'secondPage.dart';
 
@@ -22,6 +24,14 @@ class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController(initialPage: 0);
 
 // declaration d'un controller
+
+// définition des ecrans à afficher
+
+final Screens = [
+  Formulaire(),
+  secondePage(),
+  Profile()
+];
 
 
 
@@ -51,7 +61,52 @@ class _HomePageState extends State<HomePage> {
         onPressed: toggle,
         child: const Icon(Icons.access_time_sharp),
       ),
-      body: SingleChildScrollView(
+      body:Screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() => _currentIndex = index);
+          _pageController.jumpToPage(_currentIndex);
+        },
+        items: const <BottomNavigationBarItem>[
+          // déclaration des onglets de l'équivalent d'une tabbar sous iOS
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today), label: 'Liste'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
+    );
+  }
+
+  void toggle() {
+    if (monEtat == true) {
+      setState(() {
+        monEtat = false;
+      });
+    } else {
+      setState(() {
+        monEtat = true;
+      });
+    }
+  }
+
+  afficheMessage(BuildContext context) {
+    final SnackBar snackBar = SnackBar(
+        content: const Text("Validation"),
+        action: SnackBarAction(
+          label: "valider",
+          onPressed: () {},
+        ));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+}
+
+
+/*
+
+SingleChildScrollView(
         child: Column(
           children: <Widget>[
             const Padding(
@@ -69,14 +124,8 @@ class _HomePageState extends State<HomePage> {
               height: 150,
               width: 150,
               child:const  CircleAvatar(
-                
                 backgroundImage:AssetImage("assets/robot.png") 
-
               )
-              /*const Image(
-                image: AssetImage("assets/robot.png"),
-                fit: BoxFit.cover,
-              ),*/
             ),
 
             Padding(
@@ -133,43 +182,4 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() => _currentIndex = index);
-          _pageController.jumpToPage(_currentIndex);
-        },
-        items: const <BottomNavigationBarItem>[
-          // déclaration des onglets de l'équivalent d'une tabbar sous iOS
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Accueil'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today), label: 'Calendrier'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: 'Mon compte'),
-        ],
-      ),
-    );
-  }
-
-  void toggle() {
-    if (monEtat == true) {
-      setState(() {
-        monEtat = false;
-      });
-    } else {
-      setState(() {
-        monEtat = true;
-      });
-    }
-  }
-
-  afficheMessage(BuildContext context) {
-    final SnackBar snackBar = SnackBar(
-        content: const Text("Validation"),
-        action: SnackBarAction(
-          label: "valider",
-          onPressed: () {},
-        ));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-}
+      */

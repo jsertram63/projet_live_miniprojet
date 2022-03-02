@@ -12,7 +12,7 @@ class _secondePageState extends State<secondePage> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.amber,
-      child: const Text("Ma seconde page",
+      child: const Text("Liste",
       style:TextStyle(
         color: Colors.green
       )
