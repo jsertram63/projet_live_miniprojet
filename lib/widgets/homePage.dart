@@ -61,7 +61,10 @@ final Screens = [
         onPressed: toggle,
         child: const Icon(Icons.access_time_sharp),
       ),
-      body:Screens[_currentIndex],
+      body:IndexedStack(
+        children: Screens,
+        index: _currentIndex,
+        ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
