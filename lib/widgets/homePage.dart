@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_live_projet/widgets/Profile.dart';
 import 'package:flutter_live_projet/widgets/formulaire.dart';
 import 'package:flutter_live_projet/widgets/lineTextField.dart';
+import 'package:flutter_live_projet/widgets/monDrawer.dart';
 import 'secondPage.dart';
 
 
+// widget home (il va gérer l'état car c'est un stateFUllwidget)
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -16,6 +18,7 @@ class _HomePageState extends State<HomePage> {
 
 
   // variables qui vont être mise à jour lors du remplissage du formulaire
+  
   String prenom = "";
   String nom = ""; // <== propriétés mis à jour avec setState (onChange)
   String date = "";
@@ -36,7 +39,7 @@ final Screens = [
 
 
   bool monEtat = false;
-
+  // initialisation du state
   @override
   void initState() {
     // TODO: implement initState
@@ -54,7 +57,9 @@ final Screens = [
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: monDrawer(),// => il attend un widget Drawer Drawer()
       appBar: AppBar(
+      
         title: const Text("Mini Projet"),
       ),
       floatingActionButton: FloatingActionButton(

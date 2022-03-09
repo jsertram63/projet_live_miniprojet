@@ -75,7 +75,7 @@ class _FormulaireState extends State<Formulaire> {
                   
                   // déclaration d'une snackbar pour avoir une barre d'information qui s'affiche en bas de l'écran
                   final SnackBar snackBar = SnackBar(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.blue, // couleur d'affichage de la snackbar
                       content: Text(formulaireModel.nom + " " + formulaireModel.prenom),
                       // définition de l'action quand le message d'information apparait
                       action: SnackBarAction(
@@ -85,6 +85,7 @@ class _FormulaireState extends State<Formulaire> {
                         },
                       ));
                       // on affiche la snackbar
+                      // méthode showSnackBar avec en argument la snackBar 
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Container(
